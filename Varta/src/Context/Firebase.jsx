@@ -2,6 +2,8 @@ import {createContext, useContext} from 'react'
 import {initializeApp} from "firebase/app"
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth'
 import {child, get, getDatabase, ref, set} from "firebase/database"
+import { getFirestore } from 'firebase/firestore'
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyCE4xXCoCVt69TUUhTZNf2MXb7H9X6lDqM",
@@ -15,6 +17,7 @@ const firebaseConfig = {
 
 export const FirebaseApp = initializeApp(firebaseConfig)
 export const FirebaseAuth = getAuth(FirebaseApp)
+export const FireStore = getFirestore(FirebaseApp)
 const database = getDatabase(FirebaseApp)
 const FirebaseContext = createContext(null)
 const dbref = ref(database)

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import logo from '/finaltitle.png'
 import { Button, TextField } from '@mui/material'
-import {FirebaseAuth, useFirebase} from '../Context/Firebase'
+import {FireStore, FirebaseAuth, useFirebase} from '../Context/Firebase'
 import {onAuthStateChanged, signOut, updateProfile} from "firebase/auth"
 import { useNavigate } from 'react-router-dom'
-
+import {doc, setDoc} from "firebase/firestore"
 
 
 function Login() {
@@ -61,6 +61,11 @@ function Login() {
           await updateProfile(data.user, {
             displayName: username
           })
+          await setDoc(doc(FireStore, "users", data.user.uid),{
+            uid: data.user.uid,
+            username: username,
+          })
+          await setDoc(doc(FireStore, "userChats", {}))
           sessionStorage.setItem("user-cred", JSON.stringify(data?.user))
           alert('Signed Up!')
           navigate('/varta/welcome')
