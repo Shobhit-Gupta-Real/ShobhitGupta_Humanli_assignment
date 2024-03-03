@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleTheme } from '../../Features/ThemeSlice';
 import {FirebaseAuth} from '../Context/Firebase'
 import {signOut} from "firebase/auth"
+import Search from './Search';
 
 function SideBar() {
   const [conversation, setConversation] = useState(
@@ -72,13 +73,7 @@ function SideBar() {
       </IconButton>
       </div>
       </div>
-      <div className={"sb-search" + (lightTheme ? "" : " dark")}>
-        <IconButton>
-        <SearchIcon className={"icon" + (lightTheme ? "" : " dark")}/>
-        </IconButton>
-        <input type="text" placeholder='Search' className={"search-box" + (lightTheme ? "" : " dark")}
-        value={user}/>
-      </div>
+      <Search/>
       <div className={"sb-conversation" + (lightTheme ? "" : " dark")}>
         {conversation.map((convo)=>{
           return <ConversationItem props={convo} key={convo.name} />

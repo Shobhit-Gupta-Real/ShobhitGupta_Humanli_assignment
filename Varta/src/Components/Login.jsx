@@ -65,7 +65,7 @@ function Login() {
             uid: data.user.uid,
             username: username,
           })
-          await setDoc(doc(FireStore, "userChats", {}))
+          await setDoc(doc(FireStore, "userChats", data.user.uid),{})
           sessionStorage.setItem("user-cred", JSON.stringify(data?.user))
           alert('Signed Up!')
           navigate('/varta/welcome')
