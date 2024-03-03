@@ -6,15 +6,33 @@ import SendIcon from '@mui/icons-material/Send';
 import MessageOthers from "./MessageOthers";
 import MessageSelf from "./MessageSelf";
 import { AnimatePresence, motion } from "framer-motion";
+import { useAuth } from "../Context/AuthContext";
+import { doc, onSnapshot } from "firebase/firestore";
+import { FireStore } from "../Context/Firebase";
 
 
 function ChatArea(){
+  const {currentUser} = useAuth()
   const [conversation, setConversation] = useState({
     name:"Test#1",
     lastMessage: "Last Message #1",
     timeStamp: "today"
   },)
   var props = conversation;
+  const [chats, setChats] = useState([]);
+  useEffect(() => {
+    const getChats = () => {
+      const unsub = onSnapshot(doc(FireStore, "userChats", currentUser.uid), (doc) => {
+        setChats(doc.data());
+      });
+
+      return () => {
+        unsub();
+      };
+    };
+
+    currentUser.uid && getChats();
+  }, [currentUser.uid]);
     return (
     <AnimatePresence>
     <motion.div 

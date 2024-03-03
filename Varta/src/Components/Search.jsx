@@ -92,7 +92,7 @@ function Search() {
       </div>
       {err && <span>User not found!</span>}
       {user && (
-        <div className="sb-conversation flex flex-row gap-2" onClick={handleSelect}>
+        <div className="sb-conversation flex flex-row gap-2"m  onClick={handleSelect}>
           <p className={"con-icon"}>{user.username[0]}</p>
           <div className={'con-title'+ (lightTheme ? "" : "dark")}>
             {user.username}
