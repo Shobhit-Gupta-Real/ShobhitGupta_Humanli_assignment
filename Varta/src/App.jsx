@@ -10,8 +10,10 @@ import ChatArea from './Components/ChatArea'
 import User_Groups from './Components/User_Groups'
 import CreateGroups from './Components/CreateGroups'
 import Groups from './Components/Groups'
+import { useAuth } from './Context/AuthContext'
 function App() {
   const [count, setCount] = useState(0)
+  const {currentUser} = useAuth()
 
   return (
     <div className='app'>

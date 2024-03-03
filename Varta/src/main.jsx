@@ -6,10 +6,12 @@ import './index.css'
 import {Provider} from 'react-redux'
 import { store } from '../Features/Store.js'
 import { FirebaseProvider } from './Context/Firebase.jsx'
+import { AuthContextProvider } from './Context/AuthContext.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+  <AuthContextProvider>
     <BrowserRouter>
     <FirebaseProvider>
     <Provider store={store}>
@@ -17,5 +19,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </Provider>
     </FirebaseProvider>
     </BrowserRouter>
-  </React.StrictMode>,
+    </AuthContextProvider>
+  </React.StrictMode>
+  
 )
