@@ -69,6 +69,7 @@ function SideBar() {
          alert('Signed Out!')
          navigate('/')
       }}>
+        //random
         <ExitToAppIcon/>
       </IconButton>
       </div>
